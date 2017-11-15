@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import './App.css';
 import * as actions from './actions/data_actions';
+import PieGraph from './components/pie';
 
 class App extends Component {
   constructor(props) {
@@ -16,18 +17,23 @@ class App extends Component {
     // this.props.receive2016();
   }
 
+  calculateTotalStudents() {
+    let students = {
+      "English 1A: Freshman Composition": 0,
+      "English 1B: Argument & Analysis": 0,
+      "English 1C: Applied Composition": 0
+    };
 
+    for(let i = 0; i < this.props.classes.length; i++) {
+      students[this.props.classes[i].course] += this.props.classes[i].students;
+    }
+
+    return students;
+  }
 
   renderData() {
-    // if (this.props.classes[0]) { console.log(this.props.classes[0].year) }
-    console.log(this.props.classes);
-    // return(
-      // this.props.classes.map(clas => (
-      //   <li>
-      //     {clas.year}
-      //   </li>
-      // ))
-    // )
+    console.log(this.calculateTotalStudents())
+
   }
 
   render() {
@@ -39,6 +45,8 @@ class App extends Component {
           <input type="radio" name='year' onClick={this.props.receive2015}/>
           <input type="radio" name='year' onClick={this.props.receive2016}/>
         </div>
+
+        <PieGraph classes={this.props.classes} students={this.calculateTotalStudents()}/>
 
         <div className="App">
           {this.renderData()}
