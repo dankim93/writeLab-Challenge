@@ -18,7 +18,7 @@ class PieGraph extends React.Component {
     return(
       <div>
         <PieChart
-        size={100}
+        size={400}
         data={[
           { key: 'English 1A: Freshman Composition', value: this.props.students[Object.keys(this.props.students)[0]], color: '#aaac84' },
           { key: 'English 1B: Argument & Analysis', value: this.props.students[Object.keys(this.props.students)[1]], color: '#dce7c5' },

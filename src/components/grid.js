@@ -55,19 +55,24 @@ class Grid extends React.Component {
     console.log(this.state.data);
   }
 
-
+  average(arr) {
+    return arr.reduce((p,c) => p + c, 0) / arr.length;
+  }
 
 
   makeGrids() {
     let classes = this.props.classes;
     if(classes[0].year === 2015 && classes[classes.length-1].year === 2016) {
-      return(
+      // if(this.average(Object.values(this.state.data[2015]))
+      let mean = this.average(Object.values(this.state.data[2015]).concat(Object.values(this.state.data[2016])));
+      let test =
         Object.keys(this.state.data[2015]).map((instructor, id) => (
           <Table.Row key={id}>
             <Table.Cell>2015</Table.Cell>
             <Table.Cell>{this.props.courseName}</Table.Cell>
             <Table.Cell>{instructor}</Table.Cell>
-            <Table.Cell>{this.state.data[2015][instructor]}</Table.Cell>
+            {this.state.data[2015][instructor] < mean ?
+              <Table.Cell><b>{this.state.data[2015][instructor]}</b></Table.Cell> : <Table.Cell>{this.state.data[2015][instructor]}</Table.Cell>}
           </Table.Row>
         )).concat(
           Object.keys(this.state.data[2016]).map((instructor, id) => (
@@ -75,30 +80,37 @@ class Grid extends React.Component {
               <Table.Cell>2016</Table.Cell>
               <Table.Cell>{this.props.courseName}</Table.Cell>
               <Table.Cell>{instructor}</Table.Cell>
-              <Table.Cell>{this.state.data[2016][instructor]}</Table.Cell>
+              {this.state.data[2016][instructor] < mean ?
+                <Table.Cell><b>{this.state.data[2016][instructor]}</b></Table.Cell> : <Table.Cell>{this.state.data[2016][instructor]}</Table.Cell>}
             </Table.Row>
           ))
-        )
+        );
+      return(
+        test
       );
     } else if(classes[0].year === 2015) {
+      let mean = this.average(Object.values(this.state.data[2015]));
       return(
         Object.keys(this.state.data[2015]).map((instructor, id) => (
           <Table.Row key={id}>
             <Table.Cell>2015</Table.Cell>
             <Table.Cell>{this.props.courseName}</Table.Cell>
             <Table.Cell>{instructor}</Table.Cell>
-            <Table.Cell>{this.state.data[2015][instructor]}</Table.Cell>
+            {this.state.data[2015][instructor] < mean ?
+              <Table.Cell><b>{this.state.data[2015][instructor]}</b></Table.Cell> : <Table.Cell>{this.state.data[2015][instructor]}</Table.Cell>}
           </Table.Row>
         ))
       );
     } else if(classes[0].year === 2016) {
+      let mean = this.average(Object.values(this.state.data[2016]));
       return(
         Object.keys(this.state.data[2016]).map((instructor, id) => (
           <Table.Row key={id}>
             <Table.Cell>2016</Table.Cell>
             <Table.Cell>{this.props.courseName}</Table.Cell>
             <Table.Cell>{instructor}</Table.Cell>
-            <Table.Cell>{this.state.data[2016][instructor]}</Table.Cell>
+            {this.state.data[2016][instructor] < mean ?
+              <Table.Cell><b>{this.state.data[2016][instructor]}</b></Table.Cell> : <Table.Cell>{this.state.data[2016][instructor]}</Table.Cell>}
           </Table.Row>
         ))
       );
