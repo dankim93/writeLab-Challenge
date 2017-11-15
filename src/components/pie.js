@@ -12,7 +12,6 @@ class PieGraph extends React.Component {
     if (this.state.clicked) {
       return (<Grid courseName={this.state.courseName}/>);
     }
-
   }
 
   render() {
@@ -27,7 +26,6 @@ class PieGraph extends React.Component {
         ]}
         clickHandler={
           (d) => {
-            console.log(d.data.key);
             this.setState({
               clicked: true,
               courseName: d.data.key
@@ -39,7 +37,6 @@ class PieGraph extends React.Component {
         {this.renderGrid()}
 
       </div>
-
     );
   }
 }

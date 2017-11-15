@@ -31,7 +31,7 @@ class App extends Component {
 
   renderData() {
     console.log(this.calculateTotalStudents())
-
+    console.log(this.props.classes);
   }
 
   render() {
