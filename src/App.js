@@ -32,16 +32,33 @@ class App extends Component {
     return students;
   }
 
+  onClick(event) {
+    let status = ""
+    if (event === 1) {
+      status = "checked";
+      this.props.receiveAll();
+    } else if (event === 2) {
+      this.props.receive2015();
+      status = "";
+    } else {
+      this.props.receive2016();
+      status = "";
+    }
+    this.setState({
+      radio1: status
+    });
+  }
+
   render() {
     return (
       <section className="container">
           <span>
             <label>Years:</label>
-            <input type="radio" name='year' onClick={this.props.receiveAll} />
+            <input type="radio" checked={this.state.radio1} name='year' onChange={() => this.onClick(1)} />
             <label>All</label>
-            <input type="radio" name='year' onClick={this.props.receive2015}/>
+            <input type="radio" name='year' onChange={() => this.onClick(2)}/>
             <label>2015</label>
-            <input type="radio" name='year' onClick={this.props.receive2016}/>
+            <input type="radio" name='year' onChange={() => this.onClick(3)}/>
             <label>2016</label>
           </span>
           <PieGraph classes={this.props.classes} students={this.calculateTotalStudents()}/>
