@@ -7,6 +7,9 @@ import PieGraph from './components/pie';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      radio1: "checked"
+    };
   }
 
   componentDidMount() {
@@ -29,27 +32,19 @@ class App extends Component {
     return students;
   }
 
-  renderData() {
-    console.log(this.calculateTotalStudents())
-    console.log(this.props.classes);
-  }
-
   render() {
     return (
-      <section>
-
-        <div>
-          <input type="radio" name='year' onClick={this.props.receiveAll} />
-          <input type="radio" name='year' onClick={this.props.receive2015}/>
-          <input type="radio" name='year' onClick={this.props.receive2016}/>
-        </div>
-
-        <PieGraph classes={this.props.classes} students={this.calculateTotalStudents()}/>
-
-        <div className="App">
-          {this.renderData()}
-        </div>
-
+      <section className="container">
+          <span>
+            <label>Years:</label>
+            <input type="radio" name='year' onClick={this.props.receiveAll} />
+            <label>All</label>
+            <input type="radio" name='year' onClick={this.props.receive2015}/>
+            <label>2015</label>
+            <input type="radio" name='year' onClick={this.props.receive2016}/>
+            <label>2016</label>
+          </span>
+          <PieGraph classes={this.props.classes} students={this.calculateTotalStudents()}/>
       </section>
     );
   }

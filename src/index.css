@@ -3,3 +3,60 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+label {
+  margin: 0px 20px 20px 0px;
+  padding-top: 3px;
+  display: inline-block;
+  margin-left: 4px;
+}
+
+.pie {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 10px 0px 20px;
+  width: 400px;
+}
+
+
+table {
+  width: 80% !important;
+  margin: 30px 0px 0px 5% !important;
+}
+
+.container {
+  margin: 15px;
+}
+
+.box {
+  float: left;
+  width: 60px;
+  height: 20px;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.A {
+  background: #aaac84;
+}
+
+.B {
+  background: #dce7c5;
+}
+
+.C {
+  background: #e3a51a;
+}
+
+.pie-grid {
+  display: flex;
+  flex-direction: row;
+}
+
+td {
+  font-size: 12px;
+}
+
+tr:nth-child(odd) {
+  background: #d3d3d3;
+}
